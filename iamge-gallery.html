@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Image Gallery</title>
+</head>
+<body>
+    <div class="heading">
+        <h2>Image Gallery</h2>
+    </div>
+    <section class="menu_tab">
+        <ul class="tabs">
+            <li class="active" data-category="*">All</li>
+            <li data-category="Fruits">Fruits</li>
+            <li data-category="Vegetable">Vegetable</li>
+            <li data-category="Beans">Beans</li>
+        </ul>
+    </section>
+
+    <section class="menu_images">
+        <div class="iamges" data-category="Fruits">
+            <img class="fruit" src="fruit.jpg">
+        </div>
+        <div class="iamges" data-category="Fruits">
+            <img class="fruit" src="friut1.jpg">
+        </div>
+        <div class="iamges" data-category="Fruits">
+            <img class="fruit" src="Fruits2.jpg">
+        </div>
+
+        <!-- ******* -->
+
+        <div class="iamges two" data-category="Vegetable">
+            <img class="vegetable" src="fruit3.jpg">
+        </div>
+        <div class="iamges two" data-category="Vegetable">
+            <img class="vegetable" src="veg.png">
+        </div>
+        <div class="iamges two" data-category="Vegetable">
+            <img class="vegetable" src="vegetable.png">
+        </div>
+
+        <!-- ******* -->
+
+        <div class="iamges three" data-category="Beans">
+            <img class="beans" src="Red-kidney-beans-2.jpg">
+        </div>
+        <div class="iamges three" data-category="Beans">
+            <img class="beans" src="Red_Mung_Beans.jpg">
+        </div>
+        <div class="iamges three" data-category="Beans">
+            <img class="beans" src="beans.jpg">
+        </div>
+    </section>
+
+<!--Js Query-->
+    <script>
+        // Select all tab elements and the image container
+const tabs = document.querySelectorAll('.tabs li');
+const images = document.querySelectorAll('.iamges');
+
+// Function to filter images based on selected category
+function filterImages(category) {
+    images.forEach(image => {
+        // If category is "All", show all images, else show only images of the selected category
+        if (category === '*' || image.dataset.category === category) {
+            image.style.display = 'block'; // Show the image
+        } else {
+            image.style.display = 'none'; // Hide the image
+        }
+    });
+}
+
+// Add click event listener to each tab
+tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Remove 'active' class from all tabs and add it to the clicked tab
+        tabs.forEach(tab => tab.classList.remove('active'));
+        this.classList.add('active');
+
+        // Get the category from the clicked tab and filter images accordingly
+        const category = this.getAttribute('data-category');
+        filterImages(category);
+    });
+});
+
+// Initially show all images
+filterImages('*');
+
+    </script>
+  </body>
+</html>
